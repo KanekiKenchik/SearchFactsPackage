@@ -12,7 +12,7 @@ protocol SearchFactsViewProtocol: AnyObject {
     func showAnimeFacts(animeFacts: SearchFactsEntity?)
 }
 
-class SearchFactsViewController: UIViewController {
+open class SearchFactsViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
