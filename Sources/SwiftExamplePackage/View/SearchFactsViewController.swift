@@ -30,7 +30,7 @@ public class SearchFactsViewController: UIViewController {
     }
     var animeName: String?
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
@@ -80,7 +80,7 @@ extension SearchFactsViewController: SearchFactsViewProtocol {
 
 extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
             return UITableViewCell()
         }
@@ -89,11 +89,11 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         animeFacts?.total_facts ?? 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
 //        tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -102,7 +102,7 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension SearchFactsViewController: UISearchResultsUpdating {
     
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text!
             .components(separatedBy: " ")
             .filter { !$0.isEmpty }
