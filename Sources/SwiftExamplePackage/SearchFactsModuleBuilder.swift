@@ -7,8 +7,8 @@
 
 import UIKit
 
-open class SearchFactsModuleBuilder {
-    open func build() -> SearchFactsViewController {
+public class SearchFactsModuleBuilder {
+        public static func build() -> SearchFactsViewController {
         let networkService = AnimeFactsService()
         let interactor = SearchFactsInteractor(animeFactsService: networkService)
         let router = SearchFactsRouter()
