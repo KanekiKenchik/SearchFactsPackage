@@ -32,12 +32,11 @@ public class SearchFactsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        print("test1")
+        
         setUp()
     }
     
     private func setUp() {
-        print("test2")
         view.backgroundColor = .secondarySystemBackground
         title = "Search"
         navigationItem.largeTitleDisplayMode = .always
@@ -57,6 +56,7 @@ public class SearchFactsViewController: UIViewController {
     
     //MARK: - SetupSearchController
     private func setupSearchController() {
+        print("test1")
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -72,6 +72,7 @@ public class SearchFactsViewController: UIViewController {
 
 extension SearchFactsViewController: SearchFactsViewProtocol {
     func showAnimeFacts(animeFacts: SearchFactsEntity?) {
+        print("test2")
         guard let animeFacts = animeFacts else { return }
         self.animeFacts = animeFacts
         self.tableView.reloadData()
