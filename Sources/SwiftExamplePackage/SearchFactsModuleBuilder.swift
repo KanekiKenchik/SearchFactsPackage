@@ -14,8 +14,8 @@ public class SearchFactsModuleBuilder {
         let router = SearchFactsRouter()
         let presenter = SearchFactsPresenter(router: router, interactor: interactor)
         let viewController = SearchFactsViewController()
-//        viewController.presenter = presenter
-//        presenter.view = viewController
+        viewController.presenter = presenter
+        presenter.view = viewController
         interactor.presenter = presenter
         router.viewController = viewController
         return viewController
