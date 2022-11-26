@@ -70,7 +70,7 @@ public class SearchFactsViewController: UIViewController {
         
     }
     
-    public func sayHello() {
+    public static func sayHello() {
         print("Hello!")
     }
     
