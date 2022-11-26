@@ -8,12 +8,12 @@
 import Foundation
 
 public struct SearchFactsEntity: Codable {
-    var img: String
-    var total_facts: Int
-    var data: [AnimeFact]
+    public var img: String
+    public var total_facts: Int
+    public var data: [AnimeFact]
 }
 
 public struct AnimeFact: Codable {
-    var fact_id: Int
-    var fact: String
+    public var fact_id: Int
+    public var fact: String
 }
