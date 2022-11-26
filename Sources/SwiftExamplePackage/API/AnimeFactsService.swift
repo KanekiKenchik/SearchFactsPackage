@@ -10,7 +10,7 @@ import Alamofire
 
 public class AnimeFactsService {
     
-    public func getFactsAbout(animeName: String, completion: @escaping (SearchFactsEntity) -> Void) {
+    public static func getFactsAbout(animeName: String, completion: @escaping (SearchFactsEntity) -> Void) {
         if animeName != "", animeName.count > 5 {
             AF.request("https://anime-facts-rest-api.herokuapp.com/api/v1/\(animeName)").validate().responseData(completionHandler: { responseData in
                 switch responseData.result {
