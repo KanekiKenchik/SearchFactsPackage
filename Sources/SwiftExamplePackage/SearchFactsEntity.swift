@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct SearchFactsEntity: Codable {
+public struct SearchFactsEntity: Codable {
     var img: String
     var total_facts: Int
     var data: [AnimeFact]
 }
 
-struct AnimeFact: Codable {
+public struct AnimeFact: Codable {
     var fact_id: Int
     var fact: String
 }
