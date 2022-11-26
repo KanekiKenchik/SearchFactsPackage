@@ -32,14 +32,14 @@ public class SearchFactsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .red
         setUp()
         print("view did load")
     }
     
     private func setUp() {
         print("setup view")
-        view.backgroundColor = .red
+//        view.backgroundColor = .secondarySystemBackground
         title = "Search"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
