@@ -25,7 +25,7 @@ class SearchFactsInteractor: SearchFactsInteractorProtocol {
     }
     
     func loadAnimeFacts(for animeName: String) {
-        animeFactsService!.getFactsAbout(animeName: animeName) { [weak self] animeFacts in
+        AnimeFactsService.getFactsAbout(animeName: animeName) { [weak self] animeFacts in
             self?.presenter?.didLoadAnimeFacts(animeFacts: animeFacts)
             self?.animeFacts = animeFacts
         }

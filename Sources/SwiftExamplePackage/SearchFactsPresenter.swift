@@ -15,7 +15,7 @@ protocol SearchFactsPresenterProtocol: AnyObject {
 }
 
 class SearchFactsPresenter {
-    weak var view: SearchFactsViewProtocol?
+//    weak var view: SearchFactsViewProtocol?
     var router: SearchFactsRouterProtocol?
     var interactor: SearchFactsInteractorProtocol?
     
@@ -32,7 +32,7 @@ extension SearchFactsPresenter: SearchFactsPresenterProtocol {
     }
     
     func didLoadAnimeFacts(animeFacts: SearchFactsEntity?) {
-        view?.showAnimeFacts(animeFacts: animeFacts)
+//        view?.showAnimeFacts(animeFacts: animeFacts)
     }
     
 //    func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String) {
