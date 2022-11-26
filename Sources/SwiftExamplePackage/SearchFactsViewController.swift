@@ -70,10 +70,6 @@ public class SearchFactsViewController: UIViewController {
         
     }
     
-    public static func sayHello() {
-        print("Hello!")
-    }
-    
 }
 
 extension SearchFactsViewController: SearchFactsViewProtocol {
