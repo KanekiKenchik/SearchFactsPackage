@@ -39,7 +39,7 @@ public class SearchFactsViewController: UIViewController {
     
     private func setUp() {
         print("setup view")
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .red
         title = "Search"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
