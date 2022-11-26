@@ -14,7 +14,7 @@ protocol SearchFactsViewProtocol: AnyObject {
 
 public class SearchFactsViewController: UIViewController {
     
-    private let tableView: UITableView = {
+    public let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(SearchFactsTableViewCell.self, forCellReuseIdentifier: SearchFactsTableViewCell.identifier)
         return tableView
@@ -32,7 +32,7 @@ public class SearchFactsViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        
         setUp()
         print("view did load")
     }
