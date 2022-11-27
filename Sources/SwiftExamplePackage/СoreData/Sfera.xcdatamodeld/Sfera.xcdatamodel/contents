@@ -4,7 +4,7 @@
         <attribute name="name" attributeType="String"/>
         <relationship name="animeFacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Fact" inverseName="anime" inverseEntity="Fact"/>
     </entity>
-    <entity name="Fact" representedClassName="Fact" syncable="YES">
+    <entity name="Fact" representedClassName=".Fact" syncable="YES">
         <attribute name="fact" optional="YES" attributeType="String"/>
         <attribute name="factId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="anime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Anime" inverseName="animeFacts" inverseEntity="Anime"/>
