@@ -57,18 +57,18 @@ public class SearchFactsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setupSearchController()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.addSubview(tableView)
-        
-        tableView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
-        }
+//
+//        tableView.dataSource = self
+//        tableView.delegate = self
+//        view.addSubview(tableView)
+//
+//        tableView.snp.makeConstraints { make in
+//            make.left.right.top.bottom.equalToSuperview()
+//        }
         
     }
     
-    //MARK: - SetupSearchController
+//    MARK: - SetupSearchController
     private func setupSearchController() {
         print("setup search controller")
         
@@ -84,47 +84,47 @@ public class SearchFactsViewController: UIViewController {
     
 }
 
-extension SearchFactsViewController: SearchFactsViewProtocol {
-    func showAnimeFacts(animeFacts: SearchFactsEntity?) {
-        guard let animeFacts = animeFacts else { return }
-        self.animeFacts = animeFacts
-        self.tableView.reloadData()
-    }
-    
-}
+//extension SearchFactsViewController: SearchFactsViewProtocol {
+//    func showAnimeFacts(animeFacts: SearchFactsEntity?) {
+//        guard let animeFacts = animeFacts else { return }
+//        self.animeFacts = animeFacts
+//        self.tableView.reloadData()
+//    }
+//
+//}
 
-extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
-            return UITableViewCell()
-        }
-        cell.accessoryType = .disclosureIndicator
-        cell.nameLabel.text = "\(animeName?.capitalized ?? "Anime") - Fact №\(animeFacts.data[indexPath.row].fact_id)"
-        return cell
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        animeFacts?.total_facts ?? 0
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
-//        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-}
-
+//extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
+//
+//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
+//            return UITableViewCell()
+//        }
+//        cell.accessoryType = .disclosureIndicator
+//        cell.nameLabel.text = "\(animeName?.capitalized ?? "Anime") - Fact №\(animeFacts.data[indexPath.row].fact_id)"
+//        return cell
+//    }
+//
+//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        animeFacts?.total_facts ?? 0
+//    }
+//
+//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
+////        tableView.deselectRow(at: indexPath, animated: true)
+//    }
+//
+//}
+//
 extension SearchFactsViewController: UISearchResultsUpdating {
-    
+
     public func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text!
             .components(separatedBy: " ")
             .filter { !$0.isEmpty }
             .joined(separator: "_")
             .lowercased()
-        
-        presenter?.startSearchAnimeFacts(for: searchString)
+
+//        presenter?.startSearchAnimeFacts(for: searchString)
     }
-    
+
 }
