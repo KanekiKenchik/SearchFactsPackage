@@ -26,7 +26,7 @@ public class CoreDataManager {
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         let bundle = Bundle.module
-        let modelURL = bundle.url(forResource: self.managedModelRootName, withExtension: self.managedModelExtension)!
+        let modelURL = bundle.url(forResource: "Sfera", withExtension: nil)!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
