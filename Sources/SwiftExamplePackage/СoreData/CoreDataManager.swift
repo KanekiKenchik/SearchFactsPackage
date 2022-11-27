@@ -13,7 +13,7 @@ public class CoreDataManager {
     public static let shared = CoreDataManager()
     
     // MARK: - Core Data stack
-
+    
     public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Sfera")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -22,6 +22,12 @@ public class CoreDataManager {
             }
         })
         return container
+    }()
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        let bundle = Bundle.module
+        let modelURL = bundle.url(forResource: self.managedModelRootName, withExtension: self.managedModelExtension)!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
     // MARK: - Core Data Saving support
