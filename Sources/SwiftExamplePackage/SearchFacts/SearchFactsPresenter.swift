@@ -10,7 +10,7 @@ import Foundation
 protocol SearchFactsPresenterProtocol: AnyObject {
     func startSearchAnimeFacts(for animeName: String)
     func didLoadAnimeFacts(animeFacts: SearchFactsEntity?)
-//    func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String)
+    func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String)
     func startSavingToCoreData(animeName: String, animeFact: AnimeFact)
 }
 
@@ -35,12 +35,12 @@ extension SearchFactsPresenter: SearchFactsPresenterProtocol {
         view?.showAnimeFacts(animeFacts: animeFacts)
     }
     
-//    func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String) {
-//        guard let animeFact = interactor?.loadAnimeFact(with: indexPath) else { return }
-//        router?.openAnimeFact(for: animeFact)
-//        let fact = AnimeFact(fact_id: animeFact.factId, fact: animeFact.fact)
-//        startSavingToCoreData(animeName: animeName, animeFact: fact)
-//    }
+    func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String) {
+        guard let animeFact = interactor?.loadAnimeFact(with: indexPath) else { return }
+        router?.openAnimeFact(for: animeFact)
+        let fact = AnimeFact(fact_id: animeFact.factId, fact: animeFact.fact)
+        startSavingToCoreData(animeName: animeName, animeFact: fact)
+    }
     
     func startSavingToCoreData(animeName: String, animeFact: AnimeFact) {
         interactor?.saveToCoreData(animeName: animeName, animeFact: animeFact)

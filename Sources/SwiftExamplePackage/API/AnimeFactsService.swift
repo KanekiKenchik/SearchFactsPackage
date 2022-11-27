@@ -26,7 +26,7 @@ class AnimeFactsService {
 //                }
 //            })
 //        }
-        let animeFacts = [AnimeFact]()
+        var animeFacts = [AnimeFact]()
         for i in 0..<10 {
             let animeFact = AnimeFact(fact_id: i+1, fact: "Fact №\(i+1)")
             animeFacts.append(animeFact)

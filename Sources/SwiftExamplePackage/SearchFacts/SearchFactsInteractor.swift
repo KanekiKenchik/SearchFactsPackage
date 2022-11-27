@@ -10,7 +10,7 @@ import Foundation
 protocol SearchFactsInteractorProtocol: AnyObject {
     func loadAnimeFacts(for animeName: String)
     var animeFacts: SearchFactsEntity { get }
-//    func loadAnimeFact(with indexPath: IndexPath) -> DetailsAnimeFact
+    func loadAnimeFact(with indexPath: IndexPath) -> DetailsAnimeFact
     func saveToCoreData(animeName: String, animeFact: AnimeFact)
 }
 
@@ -31,10 +31,10 @@ class SearchFactsInteractor: SearchFactsInteractorProtocol {
         }
     }
     
-//    func loadAnimeFact(with indexPath: IndexPath) -> DetailsAnimeFact {
-//        let fact = animeFacts.data[indexPath.row]
-//        return DetailsAnimeFact(fact: fact.fact, factId: fact.fact_id)
-//    }
+    func loadAnimeFact(with indexPath: IndexPath) -> DetailsAnimeFact {
+        let fact = animeFacts.data[indexPath.row]
+        return DetailsAnimeFact(fact: fact.fact, factId: fact.fact_id)
+    }
     
     func saveToCoreData(animeName: String, animeFact: AnimeFact) {
         CoreDataManager.shared.saveToCoreData(animeName: animeName, animeFact: animeFact)

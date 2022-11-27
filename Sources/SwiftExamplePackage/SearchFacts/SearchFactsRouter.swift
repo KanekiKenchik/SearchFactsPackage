@@ -8,15 +8,15 @@
 import Foundation
 
 protocol SearchFactsRouterProtocol {
-//    func openAnimeFact(for animeFact: DetailsAnimeFact)
+    func openAnimeFact(for animeFact: DetailsAnimeFact)
 }
 
 class SearchFactsRouter: SearchFactsRouterProtocol {
     weak var viewController: SearchFactsViewController?
     
-//    func openAnimeFact(for animeFact: DetailsAnimeFact) {
-//        let vc = DetailsModuleBuilder.build(animeFact: animeFact)
-//        viewController?.navigationController?.pushViewController(vc, animated: true)
-//        print("Открываю новый экран")
-//    }
+    func openAnimeFact(for animeFact: DetailsAnimeFact) {
+        let vc = DetailsModuleBuilder.build(animeFact: animeFact)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+        print("Открываю новый экран")
+    }
 }

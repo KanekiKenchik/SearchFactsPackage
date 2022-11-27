@@ -119,8 +119,8 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
-//        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
