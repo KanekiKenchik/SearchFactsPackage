@@ -44,12 +44,6 @@ public class SearchFactsViewController: UIViewController {
     }
     
     private func setUp() {
-        view.backgroundColor = .red
-        view.addSubview(lbl)
-        
-        lbl.snp.makeConstraints { make in
-            make.centerY.centerX.equalToSuperview()
-        }
         print("setup view")
 //        view.backgroundColor = .secondarySystemBackground
         title = "Search"
@@ -84,53 +78,53 @@ public class SearchFactsViewController: UIViewController {
     
 }
 
-extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.nameLabel.text = "Test \(indexPath.row)"
-        return cell
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
-    }
-    
-    
-}
-
-//extension SearchFactsViewController: SearchFactsViewProtocol {
-//    func showAnimeFacts(animeFacts: SearchFactsEntity?) {
-//        guard let animeFacts = animeFacts else { return }
-//        self.animeFacts = animeFacts
-//        self.tableView.reloadData()
-//    }
-//
-//}
-
 //extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
-//
 //    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell else {
 //            return UITableViewCell()
 //        }
-//        cell.accessoryType = .disclosureIndicator
-//        cell.nameLabel.text = "\(animeName?.capitalized ?? "Anime") - Fact №\(animeFacts.data[indexPath.row].fact_id)"
+//        cell.nameLabel.text = "Test \(indexPath.row)"
 //        return cell
 //    }
 //
 //    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        animeFacts?.total_facts ?? 0
+//        5
 //    }
 //
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
-////        tableView.deselectRow(at: indexPath, animated: true)
-//    }
 //
 //}
-//
+
+extension SearchFactsViewController: SearchFactsViewProtocol {
+    func showAnimeFacts(animeFacts: SearchFactsEntity?) {
+        guard let animeFacts = animeFacts else { return }
+        self.animeFacts = animeFacts
+        self.tableView.reloadData()
+    }
+
+}
+
+extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
+            return UITableViewCell()
+        }
+        cell.accessoryType = .disclosureIndicator
+        cell.nameLabel.text = "\(animeName?.capitalized ?? "Anime") - Fact №\(animeFacts.data[indexPath.row].fact_id)"
+        return cell
+    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        animeFacts?.total_facts ?? 0
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
+//        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
+
 extension SearchFactsViewController: UISearchResultsUpdating {
 
     public func updateSearchResults(for searchController: UISearchController) {
@@ -140,7 +134,7 @@ extension SearchFactsViewController: UISearchResultsUpdating {
             .joined(separator: "_")
             .lowercased()
 
-//        presenter?.startSearchAnimeFacts(for: searchString)
+        presenter?.startSearchAnimeFacts(for: searchString)
     }
 
 }
