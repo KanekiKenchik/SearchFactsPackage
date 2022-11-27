@@ -41,7 +41,7 @@ public class CoreDataManager {
     
     public func saveToCoreData(animeName: String, animeFact: AnimeFact) {
         let context = persistentContainer.viewContext
-        
+        print(context)
         do {
             let fact = Fact(context: context)
             fact.fact = animeFact.fact

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(Anime)
 public class Anime: NSManagedObject {
 
 }
