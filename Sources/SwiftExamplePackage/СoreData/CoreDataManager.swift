@@ -8,13 +8,13 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+public class CoreDataManager {
     
-    static let shared = CoreDataManager()
+    public static let shared = CoreDataManager()
     
     // MARK: - Core Data stack
 
-    private lazy var persistentContainer: NSPersistentContainer = {
+    public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Sfera")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -26,7 +26,7 @@ class CoreDataManager {
 
     // MARK: - Core Data Saving support
 
-    func saveContext() {
+    public func saveContext() {
         let context = persistentContainer.viewContext
         
         if context.hasChanges {
@@ -39,7 +39,7 @@ class CoreDataManager {
         }
     }
     
-    func saveToCoreData(animeName: String, animeFact: AnimeFact) {
+    public func saveToCoreData(animeName: String, animeFact: AnimeFact) {
         let context = persistentContainer.viewContext
         
         do {
@@ -74,7 +74,7 @@ class CoreDataManager {
 
     }
     
-    func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
+    public func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
         let context = persistentContainer.viewContext
         var allAnime = [Anime]()
         var allAnimeProcessed = [HistoryEntity]()

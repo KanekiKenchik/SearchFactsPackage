@@ -38,8 +38,8 @@ extension SearchFactsPresenter: SearchFactsPresenterProtocol {
     func didTapAnimeFactCell(with indexPath: IndexPath, animeName: String) {
         guard let animeFact = interactor?.loadAnimeFact(with: indexPath) else { return }
         router?.openAnimeFact(for: animeFact)
-//        let fact = AnimeFact(fact_id: animeFact.factId, fact: animeFact.fact)
-//        startSavingToCoreData(animeName: animeName, animeFact: fact)
+        let fact = AnimeFact(fact_id: animeFact.factId, fact: animeFact.fact)
+        startSavingToCoreData(animeName: animeName, animeFact: fact)
     }
     
     func startSavingToCoreData(animeName: String, animeFact: AnimeFact) {
