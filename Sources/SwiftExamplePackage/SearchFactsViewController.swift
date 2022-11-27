@@ -57,14 +57,14 @@ public class SearchFactsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setupSearchController()
-//
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        view.addSubview(tableView)
-//
-//        tableView.snp.makeConstraints { make in
-//            make.left.right.top.bottom.equalToSuperview()
-//        }
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+
+        tableView.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview()
+        }
         
     }
     
@@ -81,6 +81,22 @@ public class SearchFactsViewController: UIViewController {
         definesPresentationContext = true
         
     }
+    
+}
+
+extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.nameLabel.text = "Test \(indexPath.row)"
+        return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        5
+    }
+    
     
 }
 
