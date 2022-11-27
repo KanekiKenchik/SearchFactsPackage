@@ -1,8 +1,8 @@
 //
 //  Fact+CoreDataProperties.swift
-//  Sfera
+//  
 //
-//  Created by Афанасьев Александр Иванович on 25.11.2022.
+//  Created by Афанасьев Александр Иванович on 27.11.2022.
 //
 //
 
@@ -19,9 +19,5 @@ extension Fact {
     @NSManaged public var fact: String?
     @NSManaged public var factId: Int64
     @NSManaged public var anime: Anime?
-
-}
-
-extension Fact : Identifiable {
 
 }

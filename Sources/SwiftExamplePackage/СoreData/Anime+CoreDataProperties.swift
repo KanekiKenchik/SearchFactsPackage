@@ -1,8 +1,8 @@
 //
 //  Anime+CoreDataProperties.swift
-//  Sfera
+//  
 //
-//  Created by Афанасьев Александр Иванович on 25.11.2022.
+//  Created by Афанасьев Александр Иванович on 27.11.2022.
 //
 //
 
@@ -35,9 +35,5 @@ extension Anime {
 
     @objc(removeAnimeFacts:)
     @NSManaged public func removeFromAnimeFacts(_ values: NSSet)
-
-}
-
-extension Anime : Identifiable {
 
 }
