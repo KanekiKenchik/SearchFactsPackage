@@ -74,23 +74,23 @@ class CoreDataManager {
 
     }
     
-//    func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
-//        let context = persistentContainer.viewContext
-//        var allAnime = [Anime]()
-//        var allAnimeProcessed = [HistoryEntity]()
-//        do {
-//            allAnime = try context.fetch(Anime.fetchRequest())
-//            for anime in allAnime {
-//                var animeFacts = [HistoryAnimeFact]()
-//                for fact in anime.animeFacts {
-//                    animeFacts.append(HistoryAnimeFact(fact: fact.fact ?? "", factId: Int(fact.factId)))
-//                }
-//                allAnimeProcessed.append(HistoryEntity(name: anime.name ?? "", animeFacts: animeFacts))
-//            }
-//            completion(allAnimeProcessed)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
+        let context = persistentContainer.viewContext
+        var allAnime = [Anime]()
+        var allAnimeProcessed = [HistoryEntity]()
+        do {
+            allAnime = try context.fetch(Anime.fetchRequest())
+            for anime in allAnime {
+                var animeFacts = [HistoryAnimeFact]()
+                for fact in anime.animeFacts {
+                    animeFacts.append(HistoryAnimeFact(fact: fact.fact ?? "", factId: Int(fact.factId)))
+                }
+                allAnimeProcessed.append(HistoryEntity(name: anime.name ?? "", animeFacts: animeFacts))
+            }
+            completion(allAnimeProcessed)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
 }
