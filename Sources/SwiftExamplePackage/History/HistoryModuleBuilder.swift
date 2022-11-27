@@ -7,8 +7,8 @@
 
 import Foundation
 
-class HistoryModuleBuilder {
-    static func build() -> HistoryViewController {
+public class HistoryModuleBuilder {
+    public static func build() -> HistoryViewController {
         let animeFetchService = CoreDataManager()
         let interactor = HistoryInteractor(animeFetchService: animeFetchService)
         let router = HistoryRouter()
