@@ -15,6 +15,10 @@ extension Fact {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Fact> {
         return NSFetchRequest<Fact>(entityName: "Fact")
     }
+    
+    public override var description: String {
+        return "Fact"
+    }
 
     @NSManaged public var fact: String?
     @NSManaged public var factId: Int64
