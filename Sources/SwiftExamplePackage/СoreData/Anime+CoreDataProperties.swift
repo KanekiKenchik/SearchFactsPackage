@@ -15,6 +15,10 @@ extension Anime {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Anime> {
         return NSFetchRequest<Anime>(entityName: "Anime")
     }
+    
+    public override var description: String {
+        return "Anime"
+    }
 
     @NSManaged public var name: String?
     @NSManaged public var animeFacts: Set<Fact>
