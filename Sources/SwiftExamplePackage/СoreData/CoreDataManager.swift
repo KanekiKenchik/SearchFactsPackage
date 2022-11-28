@@ -47,9 +47,10 @@ public class CoreDataManager {
         let context = persistentContainer.viewContext
         
         do {
-            let fact = Fact(context: context)
-            fact.fact = animeFact.fact
-            fact.factId = Int64(animeFact.fact_id)
+            let factEntityDescription = NSEntityDescription.entity(forEntityName: "Fact", in: context)
+            let factObject = Fact(entity: factEntityDescription!, insertInto: context)
+            factObject.fact = animeFact.fact
+            factObject.factId = Int64(animeFact.fact_id)
             
             let results = try context.fetch(Anime.fetchRequest())
             for result in results {
@@ -60,7 +61,7 @@ public class CoreDataManager {
                             return
                         }
                     }
-                    animeFacts.update(with: fact)
+                    animeFacts.update(with: factObject)
                     result.setValue(animeFacts, forKey: "animeFacts")
                     saveContext()
                     return
@@ -69,7 +70,7 @@ public class CoreDataManager {
             
             let anime = Anime(context: context)
             anime.name = animeName
-            anime.addToAnimeFacts(fact)
+            anime.addToAnimeFacts(factObject)
             saveContext()
             
         } catch {
