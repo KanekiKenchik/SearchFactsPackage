@@ -40,11 +40,9 @@ public class SearchFactsViewController: UIViewController {
         super.viewDidLoad()
         
         setUp()
-        print("view did load")
     }
     
     private func setUp() {
-        print("setup view")
 //        view.backgroundColor = .secondarySystemBackground
         title = "Search"
         navigationItem.largeTitleDisplayMode = .always
@@ -64,11 +62,9 @@ public class SearchFactsViewController: UIViewController {
     
 //    MARK: - SetupSearchController
     private func setupSearchController() {
-        print("setup search controller")
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
-        
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search facts by anime name"
         searchController.searchResultsUpdater = self
@@ -77,22 +73,6 @@ public class SearchFactsViewController: UIViewController {
     }
     
 }
-
-//extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
-//    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell else {
-//            return UITableViewCell()
-//        }
-//        cell.nameLabel.text = "Test \(indexPath.row)"
-//        return cell
-//    }
-//
-//    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        5
-//    }
-//
-//
-//}
 
 extension SearchFactsViewController: SearchFactsViewProtocol {
     func showAnimeFacts(animeFacts: SearchFactsEntity?) {

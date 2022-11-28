@@ -22,7 +22,8 @@ let package = Package(
         .target(
             name: "SwiftExamplePackage",
             dependencies: ["Alamofire", "SnapKit"],
-            path: "Sources/SwiftExamplePackage"),
+            path: "Sources/SwiftExamplePackage",
+            resources: [.process("SwiftExamplePackage")]),
         .testTarget(
             name: "SwiftExamplePackageTests",
             dependencies: ["SwiftExamplePackage"]),
