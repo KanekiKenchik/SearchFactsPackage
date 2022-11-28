@@ -67,10 +67,10 @@ public class CoreDataManager {
                     return
                 }
             }
-            
-            let anime = Anime(context: context)
-            anime.name = animeName
-            anime.addToAnimeFacts(factObject)
+            let animeEntityDescription = NSEntityDescription.entity(forEntityName: "Anime", in: context)
+            let animeObject = Anime(entity: animeEntityDescription!, insertInto: context)
+            animeObject.name = animeName
+            animeObject.addToAnimeFacts(factObject)
             saveContext()
             
         } catch {
