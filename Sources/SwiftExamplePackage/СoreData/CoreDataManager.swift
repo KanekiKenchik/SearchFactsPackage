@@ -45,12 +45,11 @@ public class CoreDataManager {
     
     public func saveToCoreData(animeName: String, animeFact: AnimeFact) {
         let context = persistentContainer.viewContext
+        
         do {
-//            let fact = Fact(context: context)
-            let factEntityDescription = NSEntityDescription.entity(forEntityName: "Fact", in: context)
-            let factObject = Fact(entity: factEntityDescription!, insertInto: context)
-            factObject.fact = animeFact.fact
-            factObject.factId = Int64(animeFact.fact_id)
+            let fact = Fact(context: context)
+            fact.fact = animeFact.fact
+            fact.factId = Int64(animeFact.fact_id)
             
             let results = try context.fetch(Anime.fetchRequest())
             for result in results {
@@ -61,16 +60,16 @@ public class CoreDataManager {
                             return
                         }
                     }
-                    animeFacts.update(with: factObject)
+                    animeFacts.update(with: fact)
                     result.setValue(animeFacts, forKey: "animeFacts")
                     saveContext()
                     return
                 }
             }
-            let animeEntityDescription = NSEntityDescription.entity(forEntityName: "Anime", in: context)
-            let animeObject = Anime(entity: animeEntityDescription!, insertInto: context)
-            animeObject.name = animeName
-            animeObject.addToAnimeFacts(factObject)
+            
+            let anime = Anime(context: context)
+            anime.name = animeName
+            anime.addToAnimeFacts(fact)
             saveContext()
             
         } catch {
