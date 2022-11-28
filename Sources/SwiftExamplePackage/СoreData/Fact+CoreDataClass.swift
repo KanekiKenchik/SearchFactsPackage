@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Fact)
+
 public class Fact: NSManagedObject {
 
 }
