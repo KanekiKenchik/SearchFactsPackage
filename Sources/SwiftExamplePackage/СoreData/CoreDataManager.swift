@@ -21,7 +21,7 @@ public class CoreDataManager {
 //                fatalError("Unresolved error \(error), \(error.userInfo)")
 //            }
 //        })
-        let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: nil)!
+        let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "xcdatamodeld")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
         return container
