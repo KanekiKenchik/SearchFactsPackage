@@ -15,19 +15,17 @@ public class CoreDataManager {
     // MARK: - Core Data stack
     
     public lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Sfera")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    lazy var managedObjectModel: NSManagedObjectModel = {
+//        let container = NSPersistentContainer(name: "Sfera")
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }
+//        })
         let bundle = Bundle.module
         let modelURL = bundle.url(forResource: "Sfera", withExtension: nil)!
-        return NSManagedObjectModel(contentsOf: modelURL)!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
+        let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
+        return container
     }()
 
     // MARK: - Core Data Saving support
