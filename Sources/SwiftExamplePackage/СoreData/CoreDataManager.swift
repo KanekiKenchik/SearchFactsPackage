@@ -14,7 +14,7 @@ public class CoreDataManager {
     
     // MARK: - Core Data stack
     
-    public var persistentContainer: NSPersistentContainer = {
+    public lazy var persistentContainer: NSPersistentContainer = {
 //        let container = NSPersistentContainer(name: "Sfera")
 //        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
 //            if let error = error as NSError? {
