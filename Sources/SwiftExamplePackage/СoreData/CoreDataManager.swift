@@ -23,8 +23,8 @@ public class CoreDataManager {
 //        })
         let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
-        print(model)
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
+        print(container)
         return container
     }()
 
