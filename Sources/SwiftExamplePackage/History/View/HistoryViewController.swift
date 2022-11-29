@@ -28,6 +28,7 @@ public class HistoryViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    var storedAnimeName = ""
 
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +117,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didTapAnimeFactCell(with: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
-        searchController.isActive = false
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,17 +149,22 @@ extension HistoryViewController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
         
-        if searchController.searchBar.text! == "" {
+        let searchControllerText = searchController.searchBar.text!
+        
+        if searchControllerText == "" {
             presenter?.startDisplayAllAnime()
             return
         }
         
-        let searchString = searchController.searchBar.text!
-            .components(separatedBy: " ")
-            .filter { !$0.isEmpty }
-            .joined(separator: " ")
-            .lowercased()
-        presenter?.startDisplayAnime(containing: searchString)
+        if searchControllerText != storedAnimeName {
+            let searchString = searchControllerText
+                .components(separatedBy: " ")
+                .filter { !$0.isEmpty }
+                .joined(separator: " ")
+                .lowercased()
+            presenter?.startDisplayAnime(containing: searchString)
+        }
+        
     }
     
 }
