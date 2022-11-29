@@ -131,13 +131,16 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
 extension SearchFactsViewController: UISearchResultsUpdating {
 
     public func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text!
-            .components(separatedBy: " ")
-            .filter { !$0.isEmpty }
-            .joined(separator: "_")
-            .lowercased()
+        let searchControllerText = searchController.searchBar.text!
+        if animeName != searchControllerText {
+            let searchString = searchControllerText
+                .components(separatedBy: " ")
+                .filter { !$0.isEmpty }
+                .joined(separator: "_")
+                .lowercased()
 
-        presenter?.startSearchAnimeFacts(for: searchString)
+            presenter?.startSearchAnimeFacts(for: searchString)
+        }
     }
 
 }
