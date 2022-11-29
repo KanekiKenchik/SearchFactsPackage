@@ -24,7 +24,11 @@ public class CoreDataManager {
         let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
-        print(container)
+        container.loadPersistentStores { (storeDescription, error)in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
         return container
     }()
 

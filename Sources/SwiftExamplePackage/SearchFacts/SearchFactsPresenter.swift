@@ -42,6 +42,7 @@ extension SearchFactsPresenter: SearchFactsPresenterProtocol {
         startSavingToCoreData(animeName: animeName, animeFact: fact)
     }
     
+    
     func startSavingToCoreData(animeName: String, animeFact: AnimeFact) {
         interactor?.saveToCoreData(animeName: animeName, animeFact: animeFact)
     }
