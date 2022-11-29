@@ -102,6 +102,29 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
         presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+//        let degree: Double = 90
+//        let rotationAngle = CGFloat(degree * Double.pi / 180)
+//        let rotationTransform = CATransform3DMakeRotation(rotationAngle, 0, 1, 0)
+//        cell.layer.transform = rotationTransform
+//
+//        UIView.animate(withDuration: 0.4, delay: 0.1 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+//            cell.layer.transform = CATransform3DIdentity
+//        })
+        
+        let translationTransform = CATransform3DTranslate(CATransform3DIdentity, 500, 0, 0)
+        cell.layer.transform = translationTransform
+        
+        UIView.animate(withDuration: 0.4, delay: 0.1 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+            cell.layer.transform = CATransform3DIdentity
+        })
+    }
 
 }
 

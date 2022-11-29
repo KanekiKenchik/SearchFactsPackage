@@ -115,6 +115,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didTapAnimeFactCell(with: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
