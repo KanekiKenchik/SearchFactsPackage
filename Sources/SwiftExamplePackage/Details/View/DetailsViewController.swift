@@ -18,7 +18,7 @@ class DetailsViewController: UIViewController {
     let factLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "Fact"
-        lbl.font = UIFont(name: "Avenir", size: 30)
+        lbl.font = UIFont(name: "Georgia", size: 30)
         lbl.textAlignment = .center
         lbl.numberOfLines = 0
         return lbl
