@@ -9,7 +9,7 @@ import Foundation
 
 protocol HistoryInteractorProtocol: AnyObject {
     func loadAnime()
-    func loadAnimeFact(with indexPath: IndexPath, isFiltered: Bool)
+    func loadAnimeFact(with indexPath: IndexPath)
     func loadAnime(containing searchString: String)
     var anime: [HistoryEntity] { get }
 }
@@ -38,17 +38,12 @@ class HistoryInteractor: HistoryInteractorProtocol {
     
     func loadAnime(containing searchString: String) {
         let specifiedAnime = anime.filter { $0.name.contains(searchString) }
-        self.filteredAnime = anime
+        self.anime = specifiedAnime
         presenter?.didLoadAnime(anime: specifiedAnime)
     }
     
-    func loadAnimeFact(with indexPath: IndexPath, isFiltered: Bool) {
-        var fact: HistoryAnimeFact
-        if isFiltered {
-            fact = filteredAnime[indexPath.section].animeFacts[indexPath.row]
-        } else {
-            fact = anime[indexPath.section].animeFacts[indexPath.row]
-        }
+    func loadAnimeFact(with indexPath: IndexPath) {
+        let fact = anime[indexPath.section].animeFacts[indexPath.row]
         presenter?.didLoadAnimeFact(animeFact: DetailsAnimeFact(fact: fact.fact, factId: fact.factId))
     }
     

@@ -114,7 +114,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didTapAnimeFactCell(with: indexPath, isFiltered: searchController.isActive)
+        presenter?.didTapAnimeFactCell(with: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -146,10 +146,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 extension HistoryViewController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
+        
         if searchController.searchBar.text! == "" {
             presenter?.startDisplayAllAnime()
             return
         }
+        
         let searchString = searchController.searchBar.text!
             .components(separatedBy: " ")
             .filter { !$0.isEmpty }
