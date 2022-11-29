@@ -15,7 +15,7 @@ public class SearchFactsTableViewCell: UITableViewCell {
     public let nameLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "Fact №1"
-        lbl.font = UIFont(name: "Avenir Medium", size: 15)
+        lbl.font = UIFont(name: "Georgia", size: 20)
         lbl.textColor = .black
         lbl.textAlignment = .left
         return lbl
