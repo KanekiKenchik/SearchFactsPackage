@@ -9,7 +9,7 @@ import Foundation
 
 protocol HistoryInteractorProtocol: AnyObject {
     func loadAnime()
-    func loadAnimeFact(with indexPath: IndexPath)
+    func loadAnimeFact(with indexPath: IndexPath, isFiltered: Bool)
     func loadAnime(containing searchString: String)
     var anime: [HistoryEntity] { get }
 }
@@ -18,7 +18,8 @@ class HistoryInteractor: HistoryInteractorProtocol {
     weak var presenter: HistoryPresenterProtocol?
     let animeFetchService: CoreDataManager?
     
-    var anime: [HistoryEntity] = []
+    var anime = [HistoryEntity]()
+    var filteredAnime = [HistoryEntity]()
     
     init(animeFetchService: CoreDataManager) {
         self.animeFetchService = animeFetchService
@@ -35,14 +36,20 @@ class HistoryInteractor: HistoryInteractorProtocol {
         }
     }
     
-    func loadAnimeFact(with indexPath: IndexPath) {
-        let fact = anime[indexPath.section].animeFacts[indexPath.row]
-        presenter?.didLoadAnimeFact(animeFact: DetailsAnimeFact(fact: fact.fact, factId: fact.factId))
-    }
-    
     func loadAnime(containing searchString: String) {
         let specifiedAnime = anime.filter { $0.name.contains(searchString) }
+        self.filteredAnime = anime
         presenter?.didLoadAnime(anime: specifiedAnime)
+    }
+    
+    func loadAnimeFact(with indexPath: IndexPath, isFiltered: Bool) {
+        var fact: HistoryAnimeFact
+        if isFiltered {
+            fact = filteredAnime[indexPath.section].animeFacts[indexPath.row]
+        } else {
+            fact = anime[indexPath.section].animeFacts[indexPath.row]
+        }
+        presenter?.didLoadAnimeFact(animeFact: DetailsAnimeFact(fact: fact.fact, factId: fact.factId))
     }
     
 }

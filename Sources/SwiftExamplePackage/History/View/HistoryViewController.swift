@@ -23,11 +23,9 @@ public class HistoryViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     
     var presenter: HistoryPresenterProtocol?
-    var allAnime: [HistoryEntity]?{
+    var allAnime: [HistoryEntity]? {
         didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
 
@@ -116,7 +114,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didTapAnimeFactCell(with: indexPath)
+        presenter?.didTapAnimeFactCell(with: indexPath, isFiltered: searchController.isActive)
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

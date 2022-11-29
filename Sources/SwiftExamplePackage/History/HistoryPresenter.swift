@@ -10,7 +10,7 @@ import Foundation
 protocol HistoryPresenterProtocol: AnyObject {
     func startDisplayAllAnime()
     func didLoadAnime(anime: [HistoryEntity]?)
-    func didTapAnimeFactCell(with indexPath: IndexPath)
+    func didTapAnimeFactCell(with indexPath: IndexPath, isFiltered: Bool)
     func didLoadAnimeFact(animeFact: DetailsAnimeFact?)
     func startDisplayAnime(containing searchString: String)
 }
@@ -41,8 +41,8 @@ extension HistoryPresenter: HistoryPresenterProtocol {
         view?.showAnime(anime: anime)
     }
     
-    func didTapAnimeFactCell(with indexPath: IndexPath) {
-        interactor?.loadAnimeFact(with: indexPath)
+    func didTapAnimeFactCell(with indexPath: IndexPath, isFiltered: Bool) {
+        interactor?.loadAnimeFact(with: indexPath, isFiltered: isFiltered)
     }
     
     func didLoadAnimeFact(animeFact: DetailsAnimeFact?) {

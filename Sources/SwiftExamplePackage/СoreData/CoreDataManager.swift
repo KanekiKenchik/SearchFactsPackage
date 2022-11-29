@@ -15,12 +15,6 @@ public class CoreDataManager {
     // MARK: - Core Data stack
     
     public var persistentContainer: NSPersistentContainer = {
-//        let container = NSPersistentContainer(name: "Sfera")
-//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-//            if let error = error as NSError? {
-//                fatalError("Unresolved error \(error), \(error.userInfo)")
-//            }
-//        })
         let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)

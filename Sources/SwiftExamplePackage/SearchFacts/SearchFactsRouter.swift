@@ -17,6 +17,5 @@ class SearchFactsRouter: SearchFactsRouterProtocol {
     func openAnimeFact(for animeFact: DetailsAnimeFact) {
         let vc = DetailsModuleBuilder.build(animeFact: animeFact)
         viewController?.navigationController?.pushViewController(vc, animated: true)
-        print("Открываю новый экран")
     }
 }
