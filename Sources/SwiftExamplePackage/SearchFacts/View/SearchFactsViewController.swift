@@ -14,16 +14,17 @@ protocol SearchFactsViewProtocol: AnyObject {
 
 public class SearchFactsViewController: UIViewController {
     
-    let lbl: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "test"
-        return lbl
-    }()
-    
     public let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(SearchFactsTableViewCell.self, forCellReuseIdentifier: SearchFactsTableViewCell.identifier)
         return tableView
+    }()
+    
+    private let searchTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Search facts by anime name"
+        tf.borderStyle = .roundedRect
+        return tf
     }()
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -48,7 +49,8 @@ public class SearchFactsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        setupSearchController()
+        navigationItem.titleView = searchTextField
+//        setupSearchController()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -61,16 +63,16 @@ public class SearchFactsViewController: UIViewController {
     }
     
 //    MARK: - SetupSearchController
-    private func setupSearchController() {
-        
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search facts by anime name"
-        searchController.searchResultsUpdater = self
-        definesPresentationContext = true
-        
-    }
+//    private func setupSearchController() {
+//
+//        navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = true
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        searchController.searchBar.placeholder = "Search facts by anime name"
+//        searchController.searchResultsUpdater = self
+//        definesPresentationContext = true
+//
+//    }
     
 }
 
@@ -128,19 +130,28 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
-extension SearchFactsViewController: UISearchResultsUpdating {
+//extension SearchFactsViewController: UISearchResultsUpdating {
+//
+//    public func updateSearchResults(for searchController: UISearchController) {
+//        let searchControllerText = searchController.searchBar.text!
+//        if animeName != searchControllerText {
+//            let searchString = searchControllerText
+//                .components(separatedBy: " ")
+//                .filter { !$0.isEmpty }
+//                .joined(separator: "_")
+//                .lowercased()
+//
+//            presenter?.startSearchAnimeFacts(for: searchString)
+//        }
+//    }
+//
+//}
 
-    public func updateSearchResults(for searchController: UISearchController) {
-        let searchControllerText = searchController.searchBar.text!
-        if animeName != searchControllerText {
-            let searchString = searchControllerText
-                .components(separatedBy: " ")
-                .filter { !$0.isEmpty }
-                .joined(separator: "_")
-                .lowercased()
-
-            presenter?.startSearchAnimeFacts(for: searchString)
-        }
+extension SearchFactsViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let searchString = searchTextField.text!
+        searchTextField.resignFirstResponder()
+        presenter?.startSearchAnimeFacts(for: searchString)
+        return true
     }
-
 }
