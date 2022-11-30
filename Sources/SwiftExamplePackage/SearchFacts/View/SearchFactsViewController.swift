@@ -50,6 +50,9 @@ public class SearchFactsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.titleView = searchTextField
+        searchTextField.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
 //        setupSearchController()
 
         tableView.dataSource = self
