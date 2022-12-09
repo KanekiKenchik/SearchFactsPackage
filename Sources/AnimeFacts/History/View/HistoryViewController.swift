@@ -59,7 +59,7 @@ class HistoryViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(40)
         }
         
         tableView.snp.makeConstraints { make in
