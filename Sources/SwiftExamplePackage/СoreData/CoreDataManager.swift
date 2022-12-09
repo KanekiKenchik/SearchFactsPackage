@@ -14,7 +14,7 @@ public class CoreDataManager {
     
     // MARK: - Core Data stack
     
-    public var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
@@ -28,7 +28,7 @@ public class CoreDataManager {
 
     // MARK: - Core Data Saving support
 
-    public func saveContext() {
+    func saveContext() {
         let context = persistentContainer.viewContext
         
         if context.hasChanges {
@@ -41,7 +41,7 @@ public class CoreDataManager {
         }
     }
     
-    public func saveToCoreData(animeName: String, animeFact: AnimeFact) {
+    func saveToCoreData(animeName: String, animeFact: AnimeFact) {
         let context = persistentContainer.viewContext
         
         do {
