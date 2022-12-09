@@ -15,7 +15,7 @@ protocol HistoryViewProtocol: AnyObject {
 class HistoryViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: .null, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
         return tableView
     }()
@@ -51,16 +51,13 @@ class HistoryViewController: UIViewController {
         title = "History"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.contentInsetAdjustmentBehavior = .never
         
         setupSearchController()
         
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
-        }
         
         tableView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
@@ -128,10 +125,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
