@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
-public class Fact: NSManagedObject {
+@objc(Fact)
+internal class Fact: NSManagedObject {
 
 }

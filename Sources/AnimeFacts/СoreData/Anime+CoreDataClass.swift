@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
-public class Anime: NSManagedObject {
+@objc(Anime)
+internal class Anime: NSManagedObject {
 
 }
