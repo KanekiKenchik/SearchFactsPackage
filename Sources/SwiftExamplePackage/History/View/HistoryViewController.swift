@@ -12,7 +12,7 @@ protocol HistoryViewProtocol: AnyObject {
     func showAnime(anime: [HistoryEntity]?)
 }
 
-public class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -30,13 +30,13 @@ public class HistoryViewController: UIViewController {
     }
     var storedAnimeName = ""
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         setUp()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if searchController.searchBar.text! == "" {
@@ -88,11 +88,11 @@ extension HistoryViewController: HistoryViewProtocol {
 //MARK: - TableView setup
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return allAnime?.count ?? 0
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier) as? HistoryTableViewCell, let allAnime = allAnime else {
             return UITableViewCell()
         }
@@ -101,7 +101,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let allAnime = allAnime {
             let section = allAnime[section]
             return section.name
@@ -109,22 +109,22 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         return ""
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let allAnime = allAnime else { return 0 }
         return allAnime[section].animeFacts.count
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didTapAnimeFactCell(with: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
         storedAnimeName = searchController.searchBar.text!
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
 //        let degree: Double = 90
 //        let rotationAngle = CGFloat(degree * Double.pi / 180)
@@ -146,10 +146,10 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//MARK: - SearchController setup
+//MARK: - SearchController action
 extension HistoryViewController: UISearchResultsUpdating {
     
-    public func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         let searchControllerText = searchController.searchBar.text!
         

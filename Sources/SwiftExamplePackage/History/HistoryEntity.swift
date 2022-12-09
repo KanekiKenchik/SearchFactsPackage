@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct HistoryEntity {
+struct HistoryEntity {
     var name: String
     var animeFacts: [HistoryAnimeFact]
 }
 
-public struct HistoryAnimeFact {
+struct HistoryAnimeFact {
     var fact: String
     var factId: Int
 }

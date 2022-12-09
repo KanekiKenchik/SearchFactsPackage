@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-public class SearchFactsTableViewCell: UITableViewCell {
+class SearchFactsTableViewCell: UITableViewCell {
 
-    public static let identifier = "TableViewCell"
+    static let identifier = "TableViewCell"
     
-    public let nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "Fact №1"
         lbl.font = UIFont(name: "Avenir", size: 20)

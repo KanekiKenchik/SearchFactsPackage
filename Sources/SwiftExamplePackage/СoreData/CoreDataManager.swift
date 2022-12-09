@@ -8,9 +8,9 @@
 import Foundation
 import CoreData
 
-public class CoreDataManager {
+class CoreDataManager {
     
-    public static let shared = CoreDataManager()
+    static let shared = CoreDataManager()
     
     // MARK: - Core Data stack
     
@@ -77,7 +77,7 @@ public class CoreDataManager {
 
     }
     
-    public func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
+    func fetchAnime(completion: @escaping ([HistoryEntity]) -> Void) {
         let context = persistentContainer.viewContext
         var allAnime = [Anime]()
         var allAnimeProcessed = [HistoryEntity]()

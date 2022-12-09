@@ -12,9 +12,9 @@ protocol SearchFactsViewProtocol: AnyObject {
     func showAnimeFacts(animeFacts: SearchFactsEntity?)
 }
 
-public class SearchFactsViewController: UIViewController {
+class SearchFactsViewController: UIViewController {
     
-    public let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(SearchFactsTableViewCell.self, forCellReuseIdentifier: SearchFactsTableViewCell.identifier)
         return tableView
@@ -24,16 +24,18 @@ public class SearchFactsViewController: UIViewController {
     
     var presenter: SearchFactsPresenterProtocol?
     var animeFacts: SearchFactsEntity?
-    public var animeName: String?
+    var animeName: String?
 
-    public override func viewDidLoad() {
+    
+    //MARK: - LifeCycle
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
     }
     
+    //MARK: - Setup views
     private func setUp() {
-//        view.backgroundColor = .secondarySystemBackground
         title = "Search"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -50,7 +52,7 @@ public class SearchFactsViewController: UIViewController {
         
     }
     
-//    MARK: - SetupSearchController
+    //MARK: - SetupSearchController
     private func setupSearchController() {
         
         navigationItem.searchController = searchController
@@ -73,9 +75,10 @@ extension SearchFactsViewController: SearchFactsViewProtocol {
 
 }
 
+//MARK: - TableView setup
 extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource {
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchFactsTableViewCell.identifier) as? SearchFactsTableViewCell, let animeFacts = animeFacts else {
             return UITableViewCell()
         }
@@ -84,20 +87,20 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         animeFacts?.total_facts ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didTapAnimeFactCell(with: indexPath, animeName: animeName!)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
 //        let degree: Double = 90
 //        let rotationAngle = CGFloat(degree * Double.pi / 180)
@@ -118,9 +121,10 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
+//MARK: - SearchController action
 extension SearchFactsViewController: UISearchBarDelegate {
     
-    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         let searchString = searchController.searchBar.text!
             .components(separatedBy: " ")
