@@ -58,11 +58,6 @@ class HistoryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        
-        tableView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
-        }
-        
     }
     
     //MARK: - SetupSearchController
