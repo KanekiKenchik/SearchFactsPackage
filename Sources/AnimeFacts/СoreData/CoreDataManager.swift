@@ -15,10 +15,8 @@ internal class CoreDataManager {
     // MARK: - Core Data stack
     
     var persistentContainer: NSPersistentContainer = {
-        guard let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd"),
-              let model = NSManagedObjectModel(contentsOf: modelURL) else {
-            return NSPersistentContainer()
-        }
+        let modelURL = Bundle.module.url(forResource: "Sfera", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
         let container = NSPersistentCloudKitContainer(name: "Sfera", managedObjectModel: model)
         container.loadPersistentStores { (storeDescription, error)in
             if let error = error as NSError? {
