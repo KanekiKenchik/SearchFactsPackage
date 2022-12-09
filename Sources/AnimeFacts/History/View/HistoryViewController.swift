@@ -51,7 +51,6 @@ class HistoryViewController: UIViewController {
         title = "History"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.contentInsetAdjustmentBehavior = .never
         
         setupSearchController()
         
@@ -60,9 +59,9 @@ class HistoryViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
+            make.left.right.top.bottom.equalToSuperview()
         }
+        
     }
     
     //MARK: - SetupSearchController
@@ -75,7 +74,6 @@ class HistoryViewController: UIViewController {
         searchController.searchBar.placeholder = "Search facts by anime name"
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
-        
         
     }
 
@@ -126,10 +124,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
