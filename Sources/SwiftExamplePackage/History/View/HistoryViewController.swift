@@ -30,6 +30,7 @@ class HistoryViewController: UIViewController {
     }
     var storedAnimeName = ""
 
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +45,7 @@ class HistoryViewController: UIViewController {
         }
     }
     
+    //MARK: - Setup views
     private func setUp() {
         view.backgroundColor = .secondarySystemBackground
         title = "History"
