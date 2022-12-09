@@ -58,6 +58,11 @@ class HistoryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+        }
     }
     
     //MARK: - SetupSearchController
@@ -70,11 +75,6 @@ class HistoryViewController: UIViewController {
         searchController.searchBar.placeholder = "Search facts by anime name"
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
-        
-        tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
-        }
         
         
     }
