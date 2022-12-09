@@ -23,11 +23,7 @@ public class SearchFactsViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     
     var presenter: SearchFactsPresenterProtocol?
-    var animeFacts: SearchFactsEntity? {
-        willSet {
-            animeName = searchController.searchBar.text!.lowercased()
-        }
-    }
+    var animeFacts: SearchFactsEntity?
     public var animeName: String?
 
     public override func viewDidLoad() {
@@ -61,7 +57,6 @@ public class SearchFactsViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search facts by anime name"
-        searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         
@@ -123,23 +118,6 @@ extension SearchFactsViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
-extension SearchFactsViewController: UISearchResultsUpdating {
-
-    public func updateSearchResults(for searchController: UISearchController) {
-//        let searchControllerText = searchController.searchBar.text!
-//        if animeName != searchControllerText {
-//            let searchString = searchControllerText
-//                .components(separatedBy: " ")
-//                .filter { !$0.isEmpty }
-//                .joined(separator: "_")
-//                .lowercased()
-//
-//            presenter?.startSearchAnimeFacts(for: searchString)
-//        }
-    }
-
-}
-
 extension SearchFactsViewController: UISearchBarDelegate {
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -149,6 +127,7 @@ extension SearchFactsViewController: UISearchBarDelegate {
             .filter { !$0.isEmpty }
             .joined(separator: "_")
             .lowercased()
+        animeName = searchString
         presenter?.startSearchAnimeFacts(for: searchString)
     }
     

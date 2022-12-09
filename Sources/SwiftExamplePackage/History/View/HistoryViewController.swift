@@ -146,6 +146,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: - SearchController setup
 extension HistoryViewController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
