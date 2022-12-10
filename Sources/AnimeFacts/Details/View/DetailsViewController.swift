@@ -26,13 +26,15 @@ class DetailsViewController: UIViewController {
 
     var presenter: DetailsPresenterProtocol?
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUp()
+        setup()
     }
     
-    private func setUp() {
+    //MARK: - Setup views
+    private func setup() {
         view.backgroundColor = .secondarySystemBackground
         navigationItem.largeTitleDisplayMode = .never
         view.addSubview(factLabel)
